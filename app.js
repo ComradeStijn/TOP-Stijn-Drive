@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename); 
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -36,7 +36,12 @@ export const { csrfSynchronisedProtection, generateToken, revokeToken } =
       return req.body["CSRFToken"];
     },
   });
-app.use(csrfSynchronisedProtection);
+app.use((req, res, next) => {
+  if (req.path === "/login") {
+    return next();
+  }
+  csrfSynchronisedProtection(req, res, next);
+});
 
 app.use(helmet());
 app.use(
@@ -46,7 +51,7 @@ app.use(
   })
 );
 app.set("view engine", "ejs");
-app.set("view", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
 
 //

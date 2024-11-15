@@ -1,0 +1,27 @@
+<%- include('components/head.ejs') %>
+
+<main class="container">
+  <section>
+    <hgroup>
+      <h1>Welcome to Stijn Drive</h1>
+      <p>The premiere file uploading site</p>
+    </hgroup>
+  </section>
+  <hr>
+  <section class="grid">
+    <div></div>
+    <form action="/login" method="post">
+      <fieldset>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password">
+      </fieldset>
+      <button type="submit">Log In</button>
+    </form>
+    <div></div>
+  </section>
+  <hr>
+</main>
+
+<%- include('components/foot.ejs') %>
