@@ -38,7 +38,11 @@ router.get('/', (req, res) => {
   res.render('index', { title: "Stijn Drive" });
 })
 router.get('/browse', (req, res) => {
-  res.render('browse', { title: "Stijn Drive", data: data, folders: folders })
+  if (req.isAuthenticated()) {
+    res.render('browse', { title: "Stijn Drive", data: data, folders: folders })
+  } else {
+    res.redirect('/');
+  }
 })
 
 export default router

@@ -11,6 +11,8 @@ toggleButton.addEventListener("click", () => {
     html.classList.remove("modal-is-opening");
     document.addEventListener("click", modalCloser);
   }, animationDuration);
+  const closeButton = dialog.querySelector('#close-modal');
+  closeButton.addEventListener('click', () => dialog.close());
 });
 
 function modalCloser(e) {
@@ -22,5 +24,3 @@ function modalCloser(e) {
   }
 }
 
-const closeButton = dialog.querySelector('#close-modal');
-closeButton.addEventListener('click', () => dialog.close());
