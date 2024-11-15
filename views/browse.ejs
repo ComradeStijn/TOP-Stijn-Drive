@@ -1,0 +1,46 @@
+<%- include('components/head') %>
+<main class="container">
+  <article>
+    <h1>File Browser</h1>
+    <div role="group" class="grid">
+      <div></div>
+      <button>Add Folder</button>
+      <button id="add-item-btn">Add Item</button>
+      <div></div>
+    </div>
+    <hr>
+    
+    <% folders.forEach(folder => { %>
+      <details open>
+        <summary role="button" class="outline"><%= folder %></summary>
+        <button class="small">Delete Folder</button>
+        <hr>
+        <% data.filter(item => item.folder === folder).forEach(item => { %>
+            <a href=<%= item.link %>><%= item.title %></a>
+            <span><%= item.size %></span>
+            <span><i><%= item.uploadAt %></i></span>
+            <hr>
+        <% }) %>
+      </details>
+    <% }) %>
+  </article>
+
+
+  <dialog id="add-item-modal">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" id="close-modal"></button>
+        <p>
+          <strong>Upload file</strong>
+        </p>
+      </header>
+      <form action="#" method="post">
+        <fieldset>
+          <input type="file" id="upload">
+          <button class="secondary outline">Submit</button>
+        </fieldset>
+      </form>
+    </article>
+  </dialog>
+</main>
+<%- include('components/foot') %>
